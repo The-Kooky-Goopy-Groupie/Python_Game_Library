@@ -1,10 +1,7 @@
-# The Highest Number Game  -  Dylan Gartin 
+# The Highest Number Game  -  Dylan Gartin  - This allows you to play a game against Is-it-int where you have to guess the right number
 
 import random # The random function which is needed to select from the lower_Bound_Bound_Bound and upper_bound bounds
 import math # Math makes it where i can use the log function in my game so i can use it to choose a fair ammount of attempts
-
-
-with open("Log_File_Num.txt", "at") as file: file.write("- Now Outputting your Game Records... -\n") # Used to setup this games log file
 
 
 def invoke_input(Int_based_value, Output_Msg): #to call this function you provide an variable to store the int and an output message
@@ -19,7 +16,7 @@ def invoke_input(Int_based_value, Output_Msg): #to call this function you provid
 
 class HighestNum: # Makes a Default Base Class Case
      
-    def __init__(self) -> None:
+    def __init__(self) -> None: # not sure if this does anything but it also doesnt hurt anyone
          pass
     # with open("Log_File_Num.txt", "w") as file: file.write("This Logs the Highest Number Game files\n") # Used to setup this games log file
 
@@ -27,9 +24,9 @@ class HighestNum: # Makes a Default Base Class Case
         print("Hey Kiddo Welcome To Is-it-int, Number Gameo! Pick some Interger Numbers to establish the range your playing under!\n") # Flavor Text Print Statement giving game instructions 
         print("-" * 100) # formatting output
         
-        lower_bound = 0
+        lower_bound = 0 # initliazie the lower bound variable 
         lower_bound = invoke_input(lower_bound,"Give me your Lowest possible Number:  " ) # run the invoking of inputs in order to use the function
-        print("Low Value:", lower_bound)
+        print("Low Value:", lower_bound) # lower Value output just to check it comes out right
 
         while True: # forces you to pass this check to continue 
             try: # try the int input
@@ -66,7 +63,8 @@ class HighestNum: # Makes a Default Base Class Case
             if TheChoosen  == guess: # If the numbers 
                 print("-" * 100) # formatting output
                 print("Darn it you got it, and in only", count, " try or tries, Congrats, I guess.") # print your victory statement 
-                with open(file_path, "at") as file: file.write(f"- Num - Game Recorded as a WIN - Num - \n Hidden Number Value {TheChoosen}  \n Total Number of Guesses -  {attempts} \n Guesses Used -  {count}\n") 
+                with open("Log_File_Num.txt", "at") as file: file.write(f"------------------------------------------------------------------------------------------------------"  "\n ") 
+                with open("Log_File_Num.txt", "at") as file: file.write(f"- Num - Game Recorded as a WIN - Num - \n Hidden Number Value {TheChoosen}  \n Total Number of Guesses -  {attempts} \n Guesses Used -  {count}\n") 
                 break # Once correct break the loop
             elif TheChoosen  > guess: #  if the choosen number is Higher then your guess
                 print("Nope your going for the floor kid, go a little lower!") # Should Guess higher! this guy is a liar and try to throw you off the number by saying advice that makes you think the other way
@@ -77,9 +75,8 @@ class HighestNum: # Makes a Default Base Class Case
         if count >= attempts: # when the count excededs allowed attempts
             print("-" * 100) # formatting output
             print("\nThe number is,", TheChoosen , "Ooo, sorry Better Luck Next time Kid!") # output the failure text 
-            with open(file_path, "at") as file: file.write(f"------------------------------------------------------------------------------------------------------"  "\n ") 
-            with open(file_path, "at") as file: file.write(f"- Num - Game Recorded as a LOSS - Num - \n Hidden Number Value {TheChoosen}  \n Total Number of Guesses -  {attempts} \n Guesses Used -  {count}\n") 
-    
-        # Main_Highest_Num("Log_File_Num.txt") # This send the text to the log file in order to store it.
-        with open("Log_File_Num.txt") as file: print(file.read()) # This displays the game log to the user. 
+            with open("Log_File_Num.txt", "at") as file: file.write(f"------------------------------------------------------------------------------------------------------"  "\n ") 
+            with open("Log_File_Num.txt", "at") as file: file.write(f"- Num - Game Recorded as a LOSS - Num - \n Hidden Number Value {TheChoosen}  \n Total Number of Guesses -  {attempts} \n Guesses Used -  {count}\n") 
+             
+        
 
