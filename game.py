@@ -52,34 +52,18 @@ HANGMAN = [
     '''
 ]
 
-#Dictionary of cars names
-'''cars = {'Super': 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg'.split(), 
-'Common': 'ford chevrolet jeep subaru dodge toyota volkswagen honda kia nissan'.split(), 
-'Luxury': 'landrover rollsroyce mercedesbenz audi acura jaguar cadillac'.split()}
-'''
-
-cars = 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg ford chevrolet jeep subaru dodge toyota volkswagen honda kia nissan landrover rollsroyce mercedesbenz audi acura jaguar cadillac'.split()
-
-# class
+#List of car brand names
+cars = 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg ford chevrolet jeep subaru dodge toyota volkswagen honda kia nissan landrover rollsroyce mercedesbenz audi acura jaguar cadillac bmw'.split()
 
 # Returns a car string from a Dictionary passed in key
-def getRandomCar(carDict):
-    # Selects a random key from the dictionary
-    #carKey = random.choice(list(carDict.keys()))
-
-    # Selects a random car name from key's in the dictionary
-    #selectCar = random.randint(0, len(carDict[carKey]) - 1)
-
-    # The function returns a list with two items
-    #return [carDict[carKey][selectCar], carKey]
-
-    selectCar = random.randint(0, len(carDict) - 1)
-    return carDict[selectCar]
+def getRandomCar(carList):
+    selectCar = random.randint(0, len(carList) - 1)
+    return carList[selectCar]
 
 # Prints the hangman game
 def showHangman(wrongLetters, correctLetters, secretWord):
     print(HANGMAN[len(wrongLetters)])
-    print()
+    print("Guess the car brand\n")
 
     print('Wrong letters you have already entered:', end=' ')
 
@@ -117,13 +101,15 @@ def getGuess(playerGuess):
 
         else: return guess
 
-#Class 
-
 # If you want to play again
 def playAgain():
     play = input("Do you want to play again (yes or no)? ")
 
-    return play.startswith('y')
+    if play == "yes" or play == 'y':
+        return True
+
+    elif play == "no" or play == 'n':
+        return False
 
 wrongLetters = ''
 correctLetters = ''
@@ -146,7 +132,7 @@ while True:
                 break
 
         if foundWord:
-            print(f"Correct!!! The secret word is {secretWord}. Congratulations you have won!")
+            print(f"\nCorrect!!! The secret word is {secretWord}. Congratulations you have won!\nYou only got " + str(len(wrongLetters)) + " letters wrong.\n")
             endOfGame = True
 
     else:
@@ -155,7 +141,7 @@ while True:
         # A check to stop asking the player when they have run out of guesses and lost the game.
         if len(wrongLetters) == len(HANGMAN) - 1:
             showHangman(wrongLetters, correctLetters, secretWord)
-            print("Sorry you have ran out of guesses\n" + str(len(wrongLetters)) + "wrong guesses and " + str(len(correctLetters)) + 'correct guesses, the word was "' + secretWord + '"')
+            print("Sorry you have ran out of guesses,\nYou got " + str(len(wrongLetters)) + " wrong guesses and " + str(len(correctLetters)) + ' correct guesses,\nThe car brand was "' + secretWord + '"\n')
             endOfGame = True
 
     # After the game is over the player is asked if they want to play again
@@ -167,3 +153,8 @@ while True:
             secretWord = getRandomCar(cars)
         else:
             break
+
+file = open("hangman.txt", "wt")
+file.write("You got " + str(len(wrongLetters)) + " letters wrong and those letters were " + wrongLetters + " and you got " + str(len(correctLetters)) + " letters correct and those letters were " + correctLetters + ". The car brand was " + secretWord)
+file.close
+
