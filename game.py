@@ -53,27 +53,36 @@ HANGMAN = [
 ]
 
 #Dictionary of cars names
-cars = {'Super': 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg'.split(), 
+'''cars = {'Super': 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg'.split(), 
 'Common': 'ford chevrolet jeep subaru dodge toyota volkswagen honda kia nissan'.split(), 
 'Luxury': 'landrover rollsroyce mercedesbenz audi acura jaguar cadillac'.split()}
+'''
+
+cars = 'lamborghini ferrari porsche mclaren bugatti maserati lotus astonmartin hennessey koenigsegg ford chevrolet jeep subaru dodge toyota volkswagen honda kia nissan landrover rollsroyce mercedesbenz audi acura jaguar cadillac'.split()
+
+# class
 
 # Returns a car string from a Dictionary passed in key
 def getRandomCar(carDict):
     # Selects a random key from the dictionary
-    carKey = random.choice(list(carDict.keys()))
+    #carKey = random.choice(list(carDict.keys()))
 
     # Selects a random car name from key's in the dictionary
-    selectCar = random.randint(0, len(carDict[carKey]) - 1)
+    #selectCar = random.randint(0, len(carDict[carKey]) - 1)
 
     # The function returns a list with two items
-    return [carDict[carKey][selectCar], carKey]
+    #return [carDict[carKey][selectCar], carKey]
+
+    selectCar = random.randint(0, len(carDict) - 1)
+    return carDict[selectCar]
 
 # Prints the hangman game
 def showHangman(wrongLetters, correctLetters, secretWord):
     print(HANGMAN[len(wrongLetters)])
     print()
 
-    print('Wrong letters you have entered:', end=' ')
+    print('Wrong letters you have already entered:', end=' ')
+
     for letter in wrongLetters:
         print(letter, end=' ')
     print()
@@ -101,12 +110,14 @@ def getGuess(playerGuess):
             print("Please only enter a single letter.")
 
         elif guess in playerGuess:
-            print("You have already guessed that letter. Please choose another letter.")
+            print(f"You have already guessed {guess}. Please choose another letter.")
 
         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
             print("Sorry you can only enter a letter from the alphabet.")
 
         else: return guess
+
+#Class 
 
 # If you want to play again
 def playAgain():
