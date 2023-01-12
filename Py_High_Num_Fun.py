@@ -3,10 +3,11 @@
 import random # The random function which is needed to select from the lower_Bound_Bound_Bound and upper_bound bounds
 import math # Math makes it where i can use the log function in my game so i can use it to choose a fair ammount of attempts
 
+
 with open("Log_File_Num.txt", "at") as file: file.write("- Now Outputting your Game Records... -\n") # Used to setup this games log file
 
 
-def Invoke_Input(Int_based_value, Output_Msg): #to call this function you provide an variable to store the int and an output message
+def invoke_input(Int_based_value, Output_Msg): #to call this function you provide an variable to store the int and an output message
         
     while True: # this forces you to pass this check to continue 
         try: # try the int input
@@ -17,15 +18,17 @@ def Invoke_Input(Int_based_value, Output_Msg): #to call this function you provid
     return Int_based_value
 
 class HighestNum: # Makes a Default Base Class Case
-    
+     
+    def __init__(self) -> None:
+         pass
     # with open("Log_File_Num.txt", "w") as file: file.write("This Logs the Highest Number Game files\n") # Used to setup this games log file
 
-    def Main_Highest_Num(file_path):
+    def main_highest_num(file_path):
         print("Hey Kiddo Welcome To Is-it-int, Number Gameo! Pick some Interger Numbers to establish the range your playing under!\n") # Flavor Text Print Statement giving game instructions 
         print("-" * 100) # formatting output
         
         lower_bound = 0
-        lower_bound = Invoke_Input(lower_bound,"Give me your Lowest possible Number:  " ) # run the invoking of inputs in order to use the function
+        lower_bound = invoke_input(lower_bound,"Give me your Lowest possible Number:  " ) # run the invoking of inputs in order to use the function
         print("Low Value:", lower_bound)
 
         while True: # forces you to pass this check to continue 
@@ -55,7 +58,7 @@ class HighestNum: # Makes a Default Base Class Case
             count += 1 # add one to the count as to 
 
             guess = 0
-            guess = Invoke_Input(guess,"Guess that number or make a blunder!: " ) # allow the user to guess the int
+            guess = invoke_input(guess,"Guess that number or make a blunder!: " ) # allow the user to guess the int
             print("Guess Value:", guess)
             print("-" * 100) 
 
@@ -77,9 +80,6 @@ class HighestNum: # Makes a Default Base Class Case
             with open(file_path, "at") as file: file.write(f"------------------------------------------------------------------------------------------------------"  "\n ") 
             with open(file_path, "at") as file: file.write(f"- Num - Game Recorded as a LOSS - Num - \n Hidden Number Value {TheChoosen}  \n Total Number of Guesses -  {attempts} \n Guesses Used -  {count}\n") 
     
-    Main_Highest_Num("Log_File_Num.txt") # This send the text to the log file in order to store it.
-    with open("Log_File_Num.txt") as file: print(file.read()) # This displays the game log to the user. 
-
-high_num = HighestNum # runs through this whole file as high_num which invokes the class in order for it to be ran as function.
-
+        # Main_Highest_Num("Log_File_Num.txt") # This send the text to the log file in order to store it.
+        with open("Log_File_Num.txt") as file: print(file.read()) # This displays the game log to the user. 
 
