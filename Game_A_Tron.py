@@ -2,6 +2,7 @@
 import math # honestly is just here to test imports work and nothing else
 import Py_High_Num_Fun  # bring in the game function 
 import TicTacToe # Tic Tac Toe game
+import hangman # Hangman game
 # import your functions here guys
 
 def playgames(WishtoGame):   # Call a function  - P.S - function calls should be lower case, Also changes to your function called name make it different from what inherits too
@@ -32,7 +33,8 @@ def selectgames(Int_based_value, Output_Msg): #Works somewhat like the previous 
                 break
             elif Int_based_value == 2 : # make sure is not a bigger then lower bound one
                 print("Starting Game 2: ")
-                # Your Game Goes Here eric for hangman 
+                # Your Game Goes Here eric for hangman
+                hangman.Game().main_tictactoe()
                 break
             elif Int_based_value == 3 : # make sure is not a bigger then lower bound one
                 print("Starting Game 3: ")
