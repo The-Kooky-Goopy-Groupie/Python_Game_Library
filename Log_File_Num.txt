@@ -1,0 +1,6 @@
+- Now Outputting your Game Records... -
+------------------------------------------------------------------------------------------------------
+ - Num - Game Recorded as a LOSS - Num - 
+ Hidden Number Value 5  
+ Total Number of Guesses -  3 
+ Guesses Used -  3
