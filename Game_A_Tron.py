@@ -34,7 +34,7 @@ def selectgames(Int_based_value, Output_Msg): #Works somewhat like the previous 
             elif Int_based_value == 2 : # make sure is not a bigger then lower bound one
                 print("Starting Game 2: ")
                 # Your Game Goes Here eric for hangman
-                hangman.Game().main_tictactoe()
+                hangman
                 break
             elif Int_based_value == 3 : # make sure is not a bigger then lower bound one
                 print("Starting Game 3: ")
