@@ -81,49 +81,49 @@ def showHangman(wrongLetters, correctLetters, secretWord):
         print(letter, end=' ')
     print()
 
+def TestHangup():
+    wrongLetters = ''
+    correctLetters = ''
+    secretWord = select.getRandomCar(cars)
+    endOfGame = False
 
-wrongLetters = ''
-correctLetters = ''
-secretWord = select.getRandomCar(cars)
-endOfGame = False
+    while True:
+        showHangman(wrongLetters, correctLetters, secretWord)
 
-while True:
-    showHangman(wrongLetters, correctLetters, secretWord)
+        guess = playerguess.getGuess(wrongLetters + correctLetters)
 
-    guess = playerguess.getGuess(wrongLetters + correctLetters)
+        if guess in secretWord:
+            correctLetters = correctLetters + guess
 
-    if guess in secretWord:
-        correctLetters = correctLetters + guess
+            #A check to see if the player has won
+            foundWord = True
+            for letter in range(len(secretWord)):
+                if secretWord[letter] not in correctLetters:
+                    foundWord = False
+                    break
 
-        #A check to see if the player has won
-        foundWord = True
-        for letter in range(len(secretWord)):
-            if secretWord[letter] not in correctLetters:
-                foundWord = False
-                break
+            if foundWord:
+                print(f"\nCorrect!!! The car brand name is {secretWord}. Congratulations you have won!\nYou only got " + str(len(wrongLetters)) + " letters wrong.\n")
+                endOfGame = True
 
-        if foundWord:
-            print(f"\nCorrect!!! The car brand name is {secretWord}. Congratulations you have won!\nYou only got " + str(len(wrongLetters)) + " letters wrong.\n")
-            endOfGame = True
-
-    else:
-        wrongLetters = wrongLetters + guess
-
-        # A check to stop asking the player when they have run out of guesses and lost the game.
-        if len(wrongLetters) == len(HANGMAN) - 1:
-            showHangman(wrongLetters, correctLetters, secretWord)
-            print("\nSorry you have ran out of guesses,\nYou got " + str(len(wrongLetters)) + " wrong guesses and " + str(len(correctLetters)) + ' correct guesses,\nThe car brand was "' + secretWord + '"\n')
-            endOfGame = True
-
-    # After the game is over the player is asked if they want to play again
-    if endOfGame:
-        if again.playAgain():
-            wrongLetters = ''
-            correctLetters = ''
-            endOfGame = False
-            secretWord = select.getRandomCar(cars)
         else:
-            break
+            wrongLetters = wrongLetters + guess
+
+            # A check to stop asking the player when they have run out of guesses and lost the game.
+            if len(wrongLetters) == len(HANGMAN) - 1:
+                showHangman(wrongLetters, correctLetters, secretWord)
+                print("\nSorry you have ran out of guesses,\nYou got " + str(len(wrongLetters)) + " wrong guesses and " + str(len(correctLetters)) + ' correct guesses,\nThe car brand was "' + secretWord + '"\n')
+                endOfGame = True
+
+        # After the game is over the player is asked if they want to play again
+        if endOfGame:
+            if again.playAgain():
+                wrongLetters = ''
+                correctLetters = ''
+                endOfGame = False
+                secretWord = select.getRandomCar(cars)
+            else:
+                break
 
 try:
     file = open("hangman.txt", "at")
